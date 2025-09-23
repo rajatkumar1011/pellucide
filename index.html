@@ -11,13 +11,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        :root {
+            --cursor-glow-color: rgba(59, 130, 246, 0.5);
+            --cursor-glow-size: 600px;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #000000;
             color: #EAEAEA;
             overflow-x: hidden;
         }
+        
+        /* Cursor Glow Effect */
+        #cursor-glow {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--cursor-glow-size);
+            height: var(--cursor-glow-size);
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--cursor-glow-color), transparent 60%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: -1;
+            filter: blur(100px);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body:hover #cursor-glow {
+            opacity: 1;
+        }
 
+        /* Header Styling on Scroll */
+        header {
+            transition: background-color 0.4s ease-out, backdrop-filter 0.4s ease-out;
+        }
+        header.scrolled {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Animated Aurora Background */
         .animated-gradient-bg {
             position: absolute;
             top: 0;
@@ -27,59 +63,63 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background: radial-gradient(circle at 20% 25%, rgba(59, 130, 246, 0.15), transparent 30%),
-                        radial-gradient(circle at 80% 75%, rgba(139, 92, 246, 0.15), transparent 30%);
+            background: radial-gradient(ellipse 40% 50% at 20% 25%, rgba(59, 130, 246, 0.15), transparent),
+                        radial-gradient(ellipse 40% 50% at 80% 75%, rgba(139, 92, 246, 0.15), transparent);
             animation: move-glow 20s infinite alternate ease-in-out;
         }
 
         @keyframes move-glow {
-            from {
-                background: radial-gradient(circle at 20% 25%, rgba(59, 130, 246, 0.2), transparent 40%),
-                            radial-gradient(circle at 80% 75%, rgba(139, 92, 246, 0.2), transparent 40%);
+            0% {
+                background: radial-gradient(ellipse 40% 50% at 20% 25%, rgba(59, 130, 246, 0.2), transparent),
+                            radial-gradient(ellipse 40% 50% at 80% 75%, rgba(139, 92, 246, 0.2), transparent);
             }
-            to {
-                background: radial-gradient(circle at 80% 25%, rgba(59, 130, 246, 0.2), transparent 40%),
-                            radial-gradient(circle at 20% 75%, rgba(139, 92, 246, 0.2), transparent 40%);
+            100% {
+                background: radial-gradient(ellipse 40% 50% at 80% 25%, rgba(59, 130, 246, 0.2), transparent),
+                            radial-gradient(ellipse 40% 50% at 20% 75%, rgba(139, 92, 246, 0.2), transparent);
             }
         }
         
         .hero-gradient-text {
-            background: linear-gradient(90deg, #FFFFFF, #A0A0A0);
+            background: linear-gradient(90deg, #FFFFFF, #c0c0c0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+        /* Upgraded CTA Button */
         .cta-button {
             background: white;
             color: black;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-
         .cta-button:hover {
-            background: #EAEAEA;
             transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-        }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background 0.3s ease, border 0.3s ease;
+            box-shadow: 0 0 35px rgba(255, 255, 255, 0.3);
         }
 
+        /* Upgraded Glass Cards with 3D Tilt Effect */
+        .glass-card {
+            background: rgba(16, 16, 16, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(30, 30, 30, 0.6);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         
+        /* New Staggered Fade-in Animation */
         .fade-in {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
@@ -87,6 +127,7 @@
     </style>
 </head>
 <body class="antialiased">
+    <div id="cursor-glow"></div>
 
     <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50">
@@ -105,7 +146,7 @@
         <!-- Hero Section -->
         <section class="min-h-screen flex items-center justify-center text-center relative overflow-hidden">
             <div class="animated-gradient-bg"></div>
-            <div class="relative z-10 px-6">
+            <div class="relative z-10 px-6 hero-content">
                 <h2 class="text-5xl md:text-8xl font-black tracking-tighter mb-6 leading-tight">
                     <span class="hero-gradient-text">Complexity, Distilled.</span>
                 </h2>
@@ -133,29 +174,29 @@
 
         <!-- How It Works Section -->
         <section class="py-20 md:py-32 container mx-auto px-6">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 fade-in">
                  <h3 class="text-4xl md:text-6xl font-bold tracking-tighter">Our Process, Simplified.</h3>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- Step 1 -->
                 <div class="glass-card p-8 rounded-2xl fade-in">
-                    <div class="flex items-center justify-center bg-gray-800 w-16 h-16 rounded-full border border-gray-700 mb-6">
+                    <div class="flex items-center justify-center bg-black/20 w-16 h-16 rounded-full border border-gray-700 mb-6">
                         <span class="text-2xl font-bold text-gray-400">1</span>
                     </div>
                     <h4 class="text-2xl font-bold mb-3">Define & Discover</h4>
                     <p class="text-gray-400">We collaborate to understand your needs and your brand's essence, defining the core function and aesthetic of your custom tool.</p>
                 </div>
                 <!-- Step 2 -->
-                <div class="glass-card p-8 rounded-2xl fade-in" style="transition-delay: 200ms;">
-                    <div class="flex items-center justify-center bg-gray-800 w-16 h-16 rounded-full border border-gray-700 mb-6">
+                <div class="glass-card p-8 rounded-2xl fade-in">
+                    <div class="flex items-center justify-center bg-black/20 w-16 h-16 rounded-full border border-gray-700 mb-6">
                         <span class="text-2xl font-bold text-gray-400">2</span>
                     </div>
                     <h4 class="text-2xl font-bold mb-3">Design & Develop</h4>
                     <p class="text-gray-400">Our design-first approach ensures a sleek, intuitive UX. We then build a robust, scalable tool ready for your ecosystem.</p>
                 </div>
                 <!-- Step 3 -->
-                <div class="glass-card p-8 rounded-2xl fade-in" style="transition-delay: 400ms;">
-                    <div class="flex items-center justify-center bg-gray-800 w-16 h-16 rounded-full border border-gray-700 mb-6">
+                <div class="glass-card p-8 rounded-2xl fade-in">
+                    <div class="flex items-center justify-center bg-black/20 w-16 h-16 rounded-full border border-gray-700 mb-6">
                         <span class="text-2xl font-bold text-gray-400">3</span>
                     </div>
                     <h4 class="text-2xl font-bold mb-3">Deploy & Delight</h4>
@@ -166,7 +207,7 @@
 
         <!-- Examples Section -->
         <section class="py-20 md:py-32 container mx-auto px-6">
-             <div class="text-center mb-16 max-w-4xl mx-auto">
+             <div class="text-center mb-16 max-w-4xl mx-auto fade-in">
                  <h3 class="text-4xl md:text-6xl font-bold tracking-tighter">Imagine the Possibilities.</h3>
                  <p class="text-lg md:text-xl text-gray-400 mt-6">From internal utilities to public-facing micro-sites, your brand's toolkit is limitless.</p>
             </div>
@@ -175,15 +216,15 @@
                     <i data-lucide="qr-code" class="w-10 h-10 mb-3 text-gray-300"></i>
                     <h5 class="font-semibold">Branded QR Generators</h5>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center aspect-square fade-in" style="transition-delay: 100ms;">
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center aspect-square fade-in">
                     <i data-lucide="check-square" class="w-10 h-10 mb-3 text-gray-300"></i>
                     <h5 class="font-semibold">Interactive To-Do Lists</h5>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center aspect-square fade-in" style="transition-delay: 200ms;">
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center aspect-square fade-in">
                     <i data-lucide="gamepad-2" class="w-10 h-10 mb-3 text-gray-300"></i>
                     <h5 class="font-semibold">Simple Brand Games</h5>
                 </div>
-                <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center aspect-square fade-in" style="transition-delay: 300ms;">
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center aspect-square fade-in">
                     <i data-lucide="calculator" class="w-10 h-10 mb-3 text-gray-300"></i>
                     <h5 class="font-semibold">Niche Calculators</h5>
                 </div>
@@ -193,7 +234,7 @@
         <!-- Contact Section -->
         <section id="contact" class="py-20 md:py-32 text-center">
             <div class="container mx-auto px-6">
-                <div class="max-w-3xl mx-auto">
+                <div class="max-w-3xl mx-auto fade-in">
                      <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
                         Ready to build?
                     </h3>
@@ -212,7 +253,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-8 border-t border-gray-900">
+    <footer class="py-8 border-t border-gray-900/50">
         <div class="container mx-auto px-6 text-center text-gray-600">
             <p>© 2025 Pellucide. All Rights Reserved.</p>
         </div>
@@ -221,26 +262,54 @@
     <script>
         lucide.createIcons();
 
-        // Simple scroll-triggered fade-in animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('header');
+            const cursorGlow = document.getElementById('cursor-glow');
+            const heroContent = document.querySelector('.hero-content');
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Hero parallax effect
+                const scrollY = window.pageYOffset;
+                if (heroContent) {
+                    heroContent.style.transform = `translateY(${scrollY * 0.2}px)`;
                 }
             });
-        }, {
-            threshold: 0.1
-        });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
+            // Cursor glow effect
+            document.addEventListener('mousemove', (e) => {
+                cursorGlow.style.left = `${e.clientX}px`;
+                cursorGlow.style.top = `${e.clientY}px`;
+            });
+
+            // Staggered fade-in animation
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Apply a staggered delay based on the element's order
+                        const delay = entry.target.dataset.index * 100;
+                        setTimeout(() => {
+                           entry.target.classList.add('visible');
+                        }, delay);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-in').forEach((el, index) => {
+                 el.dataset.index = index;
+                 observer.observe(el);
+            });
         });
     </script>
 </body>
 </html>
-
-
-
-
-
 
