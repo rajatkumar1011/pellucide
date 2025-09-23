@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pellucide</title>
+    <link rel="icon" href="LOGO-removebg-preview (1).png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #EAEAEA;
+            overflow-x: hidden;
+        }
+
+        .animated-gradient-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(circle at 20% 25%, rgba(59, 130, 246, 0.15), transparent 30%),
+                        radial-gradient(circle at 80% 75%, rgba(139, 92, 246, 0.15), transparent 30%);
+            animation: move-glow 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes move-glow {
+            from {
+                background: radial-gradient(circle at 20% 25%, rgba(59, 130, 246, 0.2), transparent 40%),
+                            radial-gradient(circle at 80% 75%, rgba(139, 92, 246, 0.2), transparent 40%);
+            }
+            to {
+                background: radial-gradient(circle at 80% 25%, rgba(59, 130, 246, 0.2), transparent 40%),
+                            radial-gradient(circle at 20% 75%, rgba(139, 92, 246, 0.2), transparent 40%);
+            }
+        }
+        
+        .hero-gradient-text {
+            background: linear-gradient(90deg, #FFFFFF, #A0A0A0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-button {
+            background: white;
+            color: black;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #EAEAEA;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease, border 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="LOGO-removebg-preview (1).png" alt="Pellucide Logo" class="h-8 w-8">
+                <h1 class="text-2xl font-bold tracking-tighter">Pellucide</h1>
+            </div>
+            <a href="#contact" class="border border-gray-600 hover:border-white text-gray-300 hover:text-white px-5 py-2 rounded-full transition-colors text-sm font-medium">
+                Start a Project
+            </a>
+        </nav>
+    </header>
+
+    <main class="relative z-10">
+
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center text-center relative overflow-hidden">
+            <div class="animated-gradient-bg"></div>
+            <div class="relative z-10 px-6">
+                <h2 class="text-5xl md:text-8xl font-black tracking-tighter mb-6 leading-tight">
+                    <span class="hero-gradient-text">Complexity, Distilled.</span>
+                </h2>
+                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+                    We forge bespoke digital tools—QR generators, task managers, micro-games—that are not just functional, but are a seamless extension of your brand's identity.
+                </p>
+                <a href="#contact" class="cta-button inline-block px-10 py-4 rounded-full font-semibold text-lg shadow-lg">
+                    Envision Your Tool
+                </a>
+            </div>
+        </section>
+
+        <!-- The Idea Section -->
+        <section class="py-20 md:py-32 container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="fade-in">
+                    <span class="text-blue-400 font-semibold">THE IDEA</span>
+                    <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mt-4 mb-6">Generic tools create generic experiences.</h3>
+                    <p class="text-lg md:text-xl text-gray-400">
+                        Your brand is unique. Your tools should be too. We move beyond off-the-shelf solutions to build digital utilities that feel intrinsically <span class="text-white font-medium">yours</span>. Every pixel, every interaction, infused with your brand's DNA.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="py-20 md:py-32 container mx-auto px-6">
+            <div class="text-center mb-16">
+                 <h3 class="text-4xl md:text-6xl font-bold tracking-tighter">Our Process, Simplified.</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Step 1 -->
+                <div class="glass-card p-8 rounded-2xl fade-in">
+                    <div class="flex items-center justify-center bg-gray-800 w-16 h-16 rounded-full border border-gray-700 mb-6">
+                        <span class="text-2xl font-bold text-gray-400">1</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3">Define & Discover</h4>
+                    <p class="text-gray-400">We collaborate to understand your needs and your brand's essence, defining the core function and aesthetic of your custom tool.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="glass-card p-8 rounded-2xl fade-in" style="transition-delay: 200ms;">
+                    <div class="flex items-center justify-center bg-gray-800 w-16 h-16 rounded-full border border-gray-700 mb-6">
+                        <span class="text-2xl font-bold text-gray-400">2</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3">Design & Develop</h4>
+                    <p class="text-gray-400">Our design-first approach ensures a sleek, intuitive UX. We then build a robust, scalable tool ready for your ecosystem.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="glass-card p-8 rounded-2xl fade-in" style="transition-delay: 400ms;">
+                    <div class="flex items-center justify-center bg-gray-800 w-16 h-16 rounded-full border border-gray-700 mb-6">
+                        <span class="text-2xl font-bold text-gray-400">3</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-3">Deploy & Delight</h4>
+                    <p class="text-gray-400">We deliver your custom tool, fully integrated and ready to provide value and delight your users from day one.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section class="py-20 md:py-32 container mx-auto px-6">
+             <div class="text-center mb-16 max-w-4xl mx-auto">
+                 <h3 class="text-4xl md:text-6xl font-bold tracking-tighter">Imagine the Possibilities.</h3>
+                 <p class="text-lg md:text-xl text-gray-400 mt-6">From internal utilities to public-facing micro-sites, your brand's toolkit is limitless.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center aspect-square fade-in">
+                    <i data-lucide="qr-code" class="w-10 h-10 mb-3 text-gray-300"></i>
+                    <h5 class="font-semibold">Branded QR Generators</h5>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center aspect-square fade-in" style="transition-delay: 100ms;">
+                    <i data-lucide="check-square" class="w-10 h-10 mb-3 text-gray-300"></i>
+                    <h5 class="font-semibold">Interactive To-Do Lists</h5>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center aspect-square fade-in" style="transition-delay: 200ms;">
+                    <i data-lucide="gamepad-2" class="w-10 h-10 mb-3 text-gray-300"></i>
+                    <h5 class="font-semibold">Simple Brand Games</h5>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center aspect-square fade-in" style="transition-delay: 300ms;">
+                    <i data-lucide="calculator" class="w-10 h-10 mb-3 text-gray-300"></i>
+                    <h5 class="font-semibold">Niche Calculators</h5>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 text-center">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto">
+                     <h3 class="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
+                        Ready to build?
+                    </h3>
+                    <p class="text-lg md:text-xl text-gray-400 mb-10">
+                        Let's translate your vision into a tangible, beautifully crafted tool. Drop a line and we'll start the conversation.
+                    </p>
+                    <a href="https://mail.google.com/mail/u/0/?fs=1&to=contact@rajatkumar1.me&tf=cm"
+                       target="_blank" rel="noopener noreferrer"
+                       class="cta-button inline-block px-10 py-4 rounded-full font-semibold text-lg shadow-lg">
+                        Contact
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-900">
+        <div class="container mx-auto px-6 text-center text-gray-600">
+            <p>© 2025 Pellucide. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        lucide.createIcons();
+
+        // Simple scroll-triggered fade-in animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
