@@ -1,2 +1,2 @@
 # pellucide
-Pellucide - Launching something remarkable very soon!
+Pellucide - Launching something remarkable very very soon!
